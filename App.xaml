@@ -1,0 +1,42 @@
+﻿<Application x:Class="HRIS.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:HRIS"
+             xmlns:local1 ="clr-namespace:HRIS.Controllers"
+             xmlns:local2="clr-namespace:HRIS.Models"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             StartupUri="Views/MainWindow.xaml">
+
+    <Application.Resources>
+        <local1:StaffController x:Key="staff"/>
+        <ObjectDataProvider x:Key="viewableStaffs"
+                            ObjectInstance="{StaticResource staff}"
+                            MethodName="GetViewableStaffs">
+        </ObjectDataProvider>
+
+        <local1:UnitController x:Key="unit"/>
+        <ObjectDataProvider x:Key="viewableUnits"
+                            ObjectInstance="{StaticResource unit}"
+                            MethodName="GetViewableUnits">
+        </ObjectDataProvider>
+
+        <ObjectDataProvider x:Key="categoryValues"
+                             ObjectType="{x:Type sys:Enum}"
+                            MethodName="GetValues">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type TypeName="local2:Category"/>
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
+
+        <ObjectDataProvider 
+            x:Key="campusValues"
+            ObjectType="{x:Type sys:Enum}"
+            MethodName="GetValues"
+        >
+            <ObjectDataProvider.MethodParameters>
+                <x:Type TypeName="local2:Campus"/>
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
+
+    </Application.Resources>
+</Application>
